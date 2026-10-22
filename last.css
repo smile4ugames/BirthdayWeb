@@ -302,3 +302,10 @@ body {
     .surprise-img-frame { height: 210px; }
     .final-message h2 { font-size: 2.4rem; }
 }
+
+/* Zoom out d2.jpg to fit the entire photo inside the card frame */
+.memory-card img[src*="d2.jpg"] {
+    object-fit: contain !important;
+    background-color: #fef3c7; /* Soft yellow matching background to fill frame edges */
+    padding: 6px;
+}
