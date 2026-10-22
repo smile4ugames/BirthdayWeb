@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Bubblegum+Sans&family=Comic+Neue:wght@700&family=Quicksand:wght@500;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none !important;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(-45deg, #fffbe3, #e0f2fe, #fef3c7);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    font-family: 'Quicksand', sans-serif;
+    overflow-x: hidden;
+    padding: 2rem 1rem;
+}
+
+/* Sambar Vada Cursor */
+.vada-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 38px;
+    height: 38px;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    filter: drop-shadow(0 4px 10px rgba(217, 119, 6, 0.6));
+    transition: transform 0.15s ease-out;
+}
+
+.vada-svg {
+    width: 100%;
+    height: 100%;
+    animation: vadaGlow 2s infinite alternate ease-in-out;
+}
+
+@keyframes vadaGlow {
+    0% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.08) rotate(5deg); }
+    100% { transform: scale(1) rotate(0deg); }
+}
+
+.cursor-sparkle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 9998;
+    border-radius: 50%;
+    animation: sparkleFade 0.7s linear forwards;
+}
+
+@keyframes sparkleFade {
+    0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 3rem;
+    color: #d97706;
+    text-shadow: 2px 2px 4px rgba(217, 119, 6, 0.2);
+    margin-bottom: 2rem;
+    animation: bounce 1s ease infinite;
+}
+
+/* Perfect Flex/Grid alignment for reason cards */
+#reasons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    margin-bottom: 1rem;
+}
+
+.reason-card {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
+    padding: 1.5rem;
+    width: 100%;
+    max-width: 600px;
+    box-shadow: 0 10px 25px rgba(217, 119, 6, 0.15);
+    border: 2px solid #fde68a;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.reason-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 30px rgba(217, 119, 6, 0.25);
+}
+
+/* Standardized Image Container & Aspect Ratio Alignment */
+.reason-img-container {
+    width: 100%;
+    height: 320px;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 1.2rem;
+    background: #fef3c7;
+    border: 1px solid #fcd34d;
+    box-shadow: inset 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.reason-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+.reason-text {
+    font-size: 1.15rem;
+    color: #374151;
+    font-weight: 700;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.shuffle-button {
+    background: linear-gradient(45deg, #d97706, #f59e0b);
+    border: none;
+    border-radius: 50px;
+    padding: 1rem 2.5rem;
+    font-size: 1.2rem;
+    color: white;
+    margin: 1.5rem 0 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-family: 'Comic Neue', cursive;
+    box-shadow: 0 5px 15px rgba(217, 119, 6, 0.35);
+    font-weight: bold;
+}
+
+.shuffle-button.story-mode {
+    background: linear-gradient(45deg, #0d9488, #14b8a6);
+    transform: scale(1.1);
+}
+
+.shuffle-button:hover {
+    transform: scale(1.08);
+}
+
+.reason-counter {
+    font-size: 1rem;
+    color: #d97706;
+    margin-top: 0.5rem;
+    font-weight: bold;
+}
+
+.ending-section {
+    margin-top: 3rem;
+    padding: 2rem;
+    text-align: center;
+}
+
+.ending-text {
+    font-family: 'Bubblegum Sans', cursive;
+    font-size: 2rem;
+    color: #d97706;
+    margin-top: 1.5rem;
+}
+
+.teddy-hug {
+    width: 220px;
+    height: 220px;
+    margin: 0 auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+    border: 3px solid #fde68a;
+}
+
+.teddy-hug img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.floating {
+    position: fixed;
+    pointer-events: none;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2.2rem; }
+    .reason-card { padding: 1rem; }
+    .reason-img-container { height: 240px; }
+    .reason-text { font-size: 1rem; }
+    .teddy-hug { width: 180px; height: 180px; }
+}

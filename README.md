@@ -1,2 +1,1 @@
-# BirthdayWeb
-Web page for birthday wishes
+project for my frind birthday and fun way to learn

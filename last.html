@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Best Moments ✨</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="./last.css">
+</head>
+<body>
+
+    <!-- Sambar Vada Custom Cursor -->
+    <div id="vada-cursor" class="vada-cursor">
+        <svg viewBox="0 0 36 36" class="vada-svg">
+            <circle cx="18" cy="18" r="15" fill="#d97706" stroke="#78350f" stroke-width="2.5"/>
+            <circle cx="18" cy="18" r="5" fill="#78350f"/>
+            <ellipse cx="14" cy="12" rx="4" ry="2.5" fill="#fef3c7" opacity="0.8"/>
+            <circle cx="11" cy="22" r="1.5" fill="#15803d"/>
+            <circle cx="24" cy="14" r="1.5" fill="#15803d"/>
+            <circle cx="21" cy="24" r="1.2" fill="#b91c1c"/>
+            <circle cx="13" cy="16" r="1" fill="#fbbf24"/>
+        </svg>
+    </div>
+
+    <!-- Container for Mega Flower & Smile Emoji Rain -->
+    <div id="flower-rain-container"></div>
+
+    <!-- Welcome Section -->
+    <section class="welcome">
+        <h1>Our Beautiful Moments Together ✨</h1>
+        <p>Every laugh, chat, and milestone with you makes life brighter. Let's cherish these best-friend memories!</p>
+    </section>
+
+    <!-- Memory Gallery Cards (d1, d2, d3) -->
+    <div class="memory-container">
+        <div class="memory-card">
+            <img src="./d1.jpeg" alt="Her Smile" class="memory-img" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=500&q=80'">
+            <div class="memory-title">Her Smile Says It All ⭐</div>
+            <div class="memory-caption">You’re truly one of the sweetest best friends I know, and I feel so lucky to share this bond with you! ✨</div>
+        </div>
+        <div class="memory-card">
+            <img src="./d2.jpeg" alt="Together Vibes" class="memory-img" onerror="this.src='https://images.unsplash.com/photo-1517457373958-b7bdd4587205?w=500&q=80'">
+            <div class="memory-title">Together Vibes 🧋</div>
+            <div class="memory-caption">May your journey ahead be filled with endless happiness, great success, and infinite smiles. 😊🤝</div>
+        </div>
+        <div class="memory-card">
+            <img src="./d3.jpeg" alt="Awesome Soul" class="memory-img" onerror="this.src='https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=500&q=80'">
+            <div class="memory-title">Awesome Soul 👑</div>
+            <div class="memory-caption">Keep being the amazing person you are—you bring bright positive energy wherever you go! ⭐</div>
+        </div>
+    </div>
+
+    <!-- Surprise Modal Overlay for d4.jpg -->
+    <div id="surprise-modal" class="surprise-modal">
+        <div class="surprise-card" id="surprise-card">
+            <div class="surprise-badge">Special Surprise Memory 🌟</div>
+            <div class="surprise-img-frame">
+                <img src="./d4.jpg" alt="Surprise Memory Anusha Ji" onerror="this.src='https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=600&q=80'">
+            </div>
+            <p class="surprise-text">Happy Birthday Anusha ji! Keep spreading endless smiles & joy! 🥳✨</p>
+            
+            <!-- Back To Start Button placed right below the pop-up wording -->
+            <button id="modal-back-btn" class="modal-back-btn">Back To Start ⭐</button>
+        </div>
+    </div>
+
+    <!-- Final Message Section -->
+    <section class="final-message">
+        <h2>Thank You for Being an Awesome Best Friend 🏆</h2>
+        <p>Every laugh, every chat, and every fun memory we’ve shared has been truly special.💫<br>
+        I’m so grateful for our bond and for all the joy you bring. On your birthday, I wish for endless happiness, love, and grand success for you! 🌸</p>
+        <p>You deserve all the joy in the world—keep shining and spreading your bright energy! ✨</p>
+        
+        <button id="action-btn" class="goodbye-btn">Click to amaze ✨</button>
+    </section>
+
+    <script>
+        // Sambar Vada Cursor Logic
+        const vadaCursor = document.getElementById('vada-cursor');
+        document.addEventListener('mousemove', (e) => {
+            vadaCursor.style.left = e.clientX + 'px';
+            vadaCursor.style.top = e.clientY + 'px';
+
+            if (Math.random() < 0.3) {
+                const sparkle = document.createElement('div');
+                sparkle.className = 'cursor-sparkle';
+                const symbols = ['⭐', '✨', '🧋', '🌿'];
+                sparkle.innerText = symbols[Math.floor(Math.random() * symbols.length)];
+                sparkle.style.fontSize = '12px';
+                sparkle.style.left = e.clientX + 'px';
+                sparkle.style.top = e.clientY + 'px';
+                document.body.appendChild(sparkle);
+                setTimeout(() => sparkle.remove(), 700);
+            }
+        });
+
+        const actionBtn = document.getElementById('action-btn');
+        const modalBackBtn = document.getElementById('modal-back-btn');
+        const surpriseModal = document.getElementById('surprise-modal');
+        const surpriseCard = document.getElementById('surprise-card');
+
+        // Stage 1: Click "Click to amaze" -> Show popup & flower/emoji rain
+        actionBtn.addEventListener('click', () => {
+            surpriseModal.style.display = 'flex';
+            
+            gsap.fromTo(surpriseCard, 
+                { scale: 0.1, rotationY: 180, opacity: 0 },
+                { scale: 1, rotationY: 0, opacity: 1, duration: 0.8, ease: "back.out(1.7)" }
+            );
+
+            triggerFlowerAndSmileRain();
+            
+            // Hide main action button after triggering
+            actionBtn.style.display = 'none';
+        });
+
+        // Stage 2: Click "Back To Start" inside the modal -> Return to index.html
+        modalBackBtn.addEventListener('click', () => {
+            gsap.to('body', {
+                opacity: 0,
+                duration: 0.8,
+                onComplete: () => {
+                    window.location.href = 'index.html';
+                }
+            });
+        });
+
+        // Flower + Smile Emoji Rain Generator
+        function triggerFlowerAndSmileRain() {
+            const flowerContainer = document.getElementById('flower-rain-container');
+            const rainItems = ['🌸', '🌺', '🌻', '🌷', '🌼', '🌹', '😊', '🥳', '😄', '⭐', '✨', '💫', '🧋'];
+            const itemCount = 650;
+
+            for (let i = 0; i < itemCount; i++) {
+                setTimeout(() => {
+                    const item = document.createElement('div');
+                    item.className = 'falling-flower';
+                    item.innerText = rainItems[Math.floor(Math.random() * rainItems.length)];
+                    
+                    const startX = Math.random() * window.innerWidth;
+                    const size = Math.random() * 28 + 18; 
+                    const duration = Math.random() * 4 + 2.5; 
+                    
+                    item.style.left = startX + 'px';
+                    item.style.fontSize = size + 'px';
+                    flowerContainer.appendChild(item);
+
+                    gsap.fromTo(item, 
+                        { y: -60, x: startX, rotation: 0, opacity: 1 },
+                        { 
+                            y: window.innerHeight + 100, 
+                            x: startX + (Math.random() * 200 - 100), 
+                            rotation: Math.random() * 1080 - 540, 
+                            opacity: 0, 
+                            duration: duration, 
+                            ease: "power1.out",
+                            onComplete: () => item.remove()
+                        }
+                    );
+                }, i * 10);
+            }
+        }
+    </script>
+</body>
+</html>
